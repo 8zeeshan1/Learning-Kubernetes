@@ -1,0 +1,28 @@
+Local Installation of the k8s.
+
+Install go language in our pc as k8s built using the go lang, but that doesn't actually needed to use the k8s it's just for the learning purpose.
+we will be needing a package manage choco.
+We have to ensure that kubectl is installed in the system as it is the cli command of k8s.
+then install the kind. it helps in running k8s with the help of the docker.
+
+We will be using kind to install k8s in our local system.
+In this installation the docker containers will be acting as the separate nodes.
+So we would be needing the docker engine to be continuously running.
+then we would be needing the chocolaty package manager installed in the system.
+
+with the help of -> choco install kind --We will be intalling the kind.
+then we will make the cluster using kind-> kind create cluster --image <the version required> --name <name of the cluster>
+kubectl cluster-info --context kind-<name of the cluster> ==> We can see if the control plane is running and where is it running.
+
+
+INTERACTION WITH K8S-->
+
+kubectl get nodes ==> for getting the running nodes (virtual machines)
+kubectl describe node <node name> ==> This will give the information about the node as the node = virtual machine we needed to see sometimes
+                                      how much storage, cpu, ram is there.
+
+<-----------------------------------------This was the installation of single node having all the pods--------------------------------->
+
+// We want multinode cluster. NOW WE WILL BUILD THE MULTINODE CLUSTER.
+
+So, we will have to create a YAML file for the multinode cluster.
