@@ -47,3 +47,8 @@ so
 ==> kubectl config get-contexts == This will show the current contexts.
 ==> kubectl config use-context <my-cluster-name> == will set the context for the particular cluster.
 -----------------------------------------------------------------------------------------------------------------------------------
+______________________________________________________________________________________________________________________________________________
+
+
+DAY 7
+
