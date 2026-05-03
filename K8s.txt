@@ -1,3 +1,5 @@
+DAY 6
+
 Local Installation of the k8s.
 
 Install go language in our pc as k8s built using the go lang, but that doesn't actually needed to use the k8s it's just for the learning purpose.
@@ -26,3 +28,16 @@ kubectl describe node <node name> ==> This will give the information about the n
 // We want multinode cluster. NOW WE WILL BUILD THE MULTINODE CLUSTER.
 
 So, we will have to create a YAML file for the multinode cluster.
+Ideally in the practical situations we should be having more than one control plane nodes also.
+
+after running a new cluste we saw the context is set for the newer cluster and we are not able to see the details about 
+the previous cluster so for that we use the --> --set-context flag 
+
+--------------------------------------------------- A Problem -----------------------------------------------------------------
+
+There is a problem that developers face that is we are not able to remember all the commands of the kubernetes.
+so for this we can refer to the  and search there for the cheatsheet and we will be able to 
+see all the commands and their use case. https://kubernetes.io/docs/reference/kubectl/quick-reference/ this is available in the 
+exam also to refer.
+---------------------------------------------------------------------------------------------------------------------------------
+
