@@ -41,3 +41,9 @@ see all the commands and their use case. https://kubernetes.io/docs/reference/ku
 exam also to refer.
 ---------------------------------------------------------------------------------------------------------------------------------
 
+----------------------------------------------------- A TIP ----------------------------------------------------------------------------
+Remember how to switch the contexts of the clusters because in the exams we will be asked to do the task inside a particular context
+so 
+==> kubectl config get-contexts == This will show the current contexts.
+==> kubectl config use-context <my-cluster-name> == will set the context for the particular cluster.
+-----------------------------------------------------------------------------------------------------------------------------------
