@@ -59,15 +59,75 @@ i.  Imperative way = In this we directly write the commands. like eg: kubectl ru
 ii. Declarative way = In this we write a JSON or YAML file and then execute it.
 
 i. Imperative way:
-with the command kubectl run nginx-pod --image:latest --> this will run the pod and inside that pod there will be a container of 
+with the command kubectl run nginx-pod --image=<name of the image> --> this will run the pod and inside that pod there will be a container of 
 nginx. 
 One pod can have more than one containers for different different purpose.
 WE can see the pods status and details with ==> kubectl get pods 
 there 1/1 or 1/2 will indicate how many containers are there in the pod and how many are in running state.
 
 ii. Declarative way:
-* YAML supports different data types like List, dictionary, Integers and many mores.
 
+* YAML supports different data types like List, dictionary, Integers and many mores.
+* We will have to take care of indentations inside the YAML file. 
+
+-> Ex: Adding in the dictionary in YAML:
+employee:
+  name:
+  DOB:
+  place: 
+
+-> Ex: If we want list inside the dictionary:
+employee:
+  -name:zeeshan
+   DOB:2005
+   place:lucknow
+  -name:dalle
+   DOB:
+   place
+
+-> Sample of YAML Pod:
+
+apiVersion:
+kind:
+metadata:
+spec:
+
+* Structure is required like this 
+we can get the details about these fields with command ---> kubectl explain pod
+After writting the YAML file we can run it with the help of --> kubectl create -f <name of the file>
+
+* Can I Force Pods Onto the Control Plane?
+Yes, you can. While it is highly discouraged in production environments for security and stability reasons, 
+there are scenarios where it is normal:
+
+- Single-Node Clusters: If you are using local testing tools like Minikube, Docker Desktop, 
+or kind (Kubernetes in Docker), you only have one node. In these setups, the cluster provisioning tool automatically 
+removes the control plane taint so that your single node can act as both the master and the worker.
+
+- Manual Override: A cluster administrator can manually remove the taint from the control plane node using a command like:
+kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane:NoSchedule-
+
+So when the pod is created scheduler sees in which worker node it has to be reside in.--> kubectl get pods -o wide ==> 
+We can see on which worker node the pod has been created.
+
+Deleting the existing pod ==> 
+
+How to Delete a Running Pod=>
+To permanently delete a pod, you use the delete command followed by the resource type and its name.
+For the Nginx pod you created earlier, the command is:
+==> kubectl delete pod nginx
+What happens behind the scenes:
+Kubernetes doesn't just instantly kill the container. It sends a "graceful termination" signal (SIGTERM) to your application, 
+giving it a default of 30 seconds to finish serving current requests and shut down cleanly. If it doesn't shut down in 30 seconds, 
+Kubernetes forcefully kills it (SIGKILL).
+
+Note: Because you created this pod using kubectl run, it is an "unmanaged" pod. Once you delete it, it is gone forever. If it had 
+been created by a Deployment, Kubernetes would immediately spin up a replacement to maintain the desired state.
+
+______________________________________________________________________________________________________________________________________________
+
+What are managed and unmanage pods?
+______________________________________________________________________________________________________________________________________________
 
 
 
