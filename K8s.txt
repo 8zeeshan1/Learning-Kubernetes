@@ -52,3 +52,22 @@ ________________________________________________________________________________
 
 DAY 7
 
+CREATING A POD 
+
+There are two ways of creating a pod 
+i.  Imperative way = In this we directly write the commands. like eg: kubectl run nginx.
+ii. Declarative way = In this we write a JSON or YAML file and then execute it.
+
+i. Imperative way:
+with the command kubectl run nginx-pod --image:latest --> this will run the pod and inside that pod there will be a container of 
+nginx. 
+One pod can have more than one containers for different different purpose.
+WE can see the pods status and details with ==> kubectl get pods 
+there 1/1 or 1/2 will indicate how many containers are there in the pod and how many are in running state.
+
+ii. Declarative way:
+* YAML supports different data types like List, dictionary, Integers and many mores.
+
+
+
+
