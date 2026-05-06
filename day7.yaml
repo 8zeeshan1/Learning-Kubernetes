@@ -14,10 +14,30 @@
 
 
 # DAY 8 - Replication Controller:
-apiVersion: v1
-kind: Pod
+# apiVersion: v1
+# kind: ReplicationController
+# metadata:
+#   name: nginx-rc
+#   labels:
+#     env: demo
+#     type: frontend
+# spec:
+#   template:
+#     metadata:
+#       name: nginx
+#       labels:
+#         env: demo
+#     spec:
+#       containers:
+#       - image: nginx
+#         name: nginx
+#   replicas: 3
+
+# Replica Set
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
-  name: nginx-rc
+  name: nginx-rs
   labels:
     env: demo
     type: frontend
@@ -32,3 +52,6 @@ spec:
       - image: nginx
         name: nginx
   replicas: 3
+  selector:
+    matchLabels:
+      env: demo

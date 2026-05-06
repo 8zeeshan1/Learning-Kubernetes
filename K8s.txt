@@ -175,3 +175,22 @@ spec:
         name: nginx
   replicas: 3
 
+If we want the details about the pod of the replication controller go on and run command=>
+kubectl describe pod <pod-name>
+
+------------------------------------------------------------------------------------------------------------------------------------
+Till now we saw the Replication Controller. Now we will learn about the Replica Set -->
+-----------------------------------------------------------------------------------------------------------------------------------
+. REPLICA SET
+
+It is the prefferred way. The newer version.
+We should use the replica set over replication controller.
+With Replication controller we were only able to control the pods which were the parts of it's controller.
+But with the Replica set we will be able to control the pods and replicas which are not the part of that replica set.
+----------------------------------------------------------------------------------------------------------------------------------
+# With the help of ==> kubectl explain <shortform of entity> it will give details how and what to write in that yaml to
+create that thing.
+ex: kubectl explain rs -- will explain the replica set
+# group things apiVersion should be written like
+<group>/<version>
+-----------------------------------------------------------------------------------------------------------------------------------
