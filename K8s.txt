@@ -159,4 +159,19 @@ Desired number of the pods up and running and maintained by the Replication cont
 Replication Controller have the ability also to spin up the new nodes, suppose the pod needs to be replicated but the resources
 of the node are over then replication controller will spin up the new node and will replicate the pod in that node.
 
+For the replication control we need to give one more entry in the spec section that is template, we will define the template for 
+telling the replication controller what kind of pod we want.
+
+spec:
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        env: demo
+        type: frontend
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+  replicas: 3
 
