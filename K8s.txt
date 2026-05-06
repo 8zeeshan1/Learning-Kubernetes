@@ -147,3 +147,16 @@ There is also a command to generate the yaml and json files of the running pod.
 
 kubectl describe pod <podname>
 * Labels in the pods are very helpful in binding them together.
+______________________________________________________________________________________________________________________________________________
+
+DAY 8
+DEPLOYMENT AND REPLICATION
+
+Replication Controller => It spins up the replicas of the pod. It helps in spinning up the pod when it goes down. It spins up multiple
+identical replicas of whatever number we set to replicate. (Refer SS)
+Desired number of the pods up and running and maintained by the Replication controller all the time.
+
+Replication Controller have the ability also to spin up the new nodes, suppose the pod needs to be replicated but the resources
+of the node are over then replication controller will spin up the new node and will replicate the pod in that node.
+
+
