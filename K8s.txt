@@ -129,5 +129,21 @@ ________________________________________________________________________________
 What are managed and unmanage pods?
 ______________________________________________________________________________________________________________________________________________
 
+kubectl apply -f <filename> ==> This is the command to execute the YAML files.
 
+-> HOW TO DEBUG THE IMAGE PULLING?
+kubectl describe pod <pod name>
+and If we have the vim editor
+kubectl edit pod <pod name> --> will help us to edit the problem directly on VI editor.
+-----------------------------------------------------------------------------------------------------------------------------------
 
+How to interact with the pod:
+kubectl exec -it <pod name> -- sh
+-----------------------------------------------
+There is also a command to just give a dry run of the command not exactly the execution but just give the dry run.
+There is also a command to generate the yaml and json files of the running pod.
+
+* NOTE == Exam will be on the cli
+
+kubectl describe pod <podname>
+* Labels in the pods are very helpful in binding them together.
