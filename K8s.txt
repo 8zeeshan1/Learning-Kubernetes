@@ -242,4 +242,27 @@ iv.  Ensures app stays alive
    kubectl rollout history deploy/<nginx-deploy>
 -> RollBack:
    kubectl rollout undo deploy/<nginx-deploy>
+______________________________________________________________________________________________________________________________________________
+
+DAY 9 : HOW DO WE MAKE THE APPLICATION AVAILABLE FOR THE OTHER USERS:
+
+We will have different services which will interact with the pods and with the help of that we will be able to view the application.
+Services will allow the communication between the pods.
+We have various services:
+
+. Cluster IP 
+. Node port 
+. External names
+. Load balancers
+
+i. Node Ports: 
+  👉 NodePort exposes the application on the Node's port, not directly on your laptop OS port abstraction.
+  BUT:
+  👉 In local Kubernetes setups (kind/minikube/docker desktop), the node itself may actually be running inside Docker containers 
+  or VMs, which creates another networking layer.
+  Range for the node port is from 30000 - 32767.
+  -> Types of ports:
+    a) NodePort is something which get's exposed externally.
+    b) target Port: It is the port on which the traffic gets redirected from the NodePort.
+    c) port: internal service port: this will be the port which will be used by the services to communicate with the pods.
 
