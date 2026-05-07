@@ -194,3 +194,14 @@ ex: kubectl explain rs -- will explain the replica set
 # group things apiVersion should be written like
 <group>/<version>
 -----------------------------------------------------------------------------------------------------------------------------------
+Controllers says: "I own every Pod matching these labels".
+So this is our responsibility that we keep the same type of the pods under the same label.
+LABEL SELECTOR DETERMINES OWNERSHIP OF THE POD.
+ReplicaSet = ensures desired number exists
+All the labels should be matched then only they will be considered of the same group or same ownership.
+-----------------------------------------------------------------------------------------------------------------------------------
+If we want to delete a ReplicationController or ReplicaSet then we will write=>
+kubectl delete rc <name of the rc>
+kubectl delete rs <name of the rs>
+# Actually deletion happens like this only in the KUBERNETES.
+-----------------------------------------------------------------------------------------------------------------------------------
