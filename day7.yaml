@@ -12,7 +12,7 @@
 #       ports: 
 #         - containerPort: 80
 
-
+#__________________________________________________________________________________________________________________________________
 # DAY 8 - Replication Controller:
 # apiVersion: v1
 # kind: ReplicationController
@@ -32,12 +32,35 @@
 #       - image: nginx
 #         name: nginx
 #   replicas: 3
-
+#-------------------------------------------------------------------------------------------------------------------------------------------
 # Replica Set
+# apiVersion: apps/v1
+# kind: ReplicaSet
+# metadata:
+#   name: nginx-rs
+#   labels:
+#     env: demo
+#     type: frontend
+# spec:
+#   template:
+#     metadata:
+#       name: nginx
+#       labels:
+#         env: demo
+#     spec:
+#       containers:
+#       - image: nginx
+#         name: nginx
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       env: demo
+#------------------------------------------------------------------------------------------------------------------------------------
+# Deployment
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: nginx-rs
+  name: nginx-deploy
   labels:
     env: demo
     type: frontend
@@ -55,3 +78,4 @@ spec:
   selector:
     matchLabels:
       env: demo
+#---------------------------------------------------------------------------------------------------------------------------------------

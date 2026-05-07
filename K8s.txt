@@ -51,7 +51,6 @@ ________________________________________________________________________________
 
 
 DAY 7
-
 CREATING A POD 
 
 There are two ways of creating a pod 
@@ -152,7 +151,9 @@ ________________________________________________________________________________
 DAY 8
 DEPLOYMENT AND REPLICATION
 
-Replication Controller => It spins up the replicas of the pod. It helps in spinning up the pod when it goes down. It spins up multiple
+. Replication Controller
+
+It spins up the replicas of the pod. It helps in spinning up the pod when it goes down. It spins up multiple
 identical replicas of whatever number we set to replicate. (Refer SS)
 Desired number of the pods up and running and maintained by the Replication controller all the time.
 
@@ -205,3 +206,30 @@ kubectl delete rc <name of the rc>
 kubectl delete rs <name of the rs>
 # Actually deletion happens like this only in the KUBERNETES.
 -----------------------------------------------------------------------------------------------------------------------------------
+Several ways are there to increase the number of running pods one of them is=>
+kubectl scale --replicas=<number of replicas> <command of in what resource we should change like: rs>/<name of the controller>
+------------------------------------------------------------------------------------------------------------------------------------------
+. DEPLOYMENTS
+
+Actually these ReplicaSets are not created by us these gets created by the Deployment resource.
+Deployment manages the ReplicaSets and ReplicaSet manages the pods. (Refer SS)
+Deployment is a higher level manager for the replica sets.
+Deployment -> ReplicaSet -> pods
+Deployment manages:
+ReplicaSets
+Pod versions
+Rollouts: Gradually deploying new version of application.
+RollBacks: Revert to previous stable version. 
+
+Example:
+current app: nginx:v1
+we want: nginx:v2
+
+without deployment: downtime possible and manual work will be required.
+with deployment:
+i.   It creates new ReplicaSet.
+ii.  Gradually shifts the traffic.
+iii. Delete old pods slowly.
+iv.  Ensures app stays alive
+
+=> kubectl get deploy --> to see what deployments do we have.
