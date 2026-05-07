@@ -233,3 +233,13 @@ iii. Delete old pods slowly.
 iv.  Ensures app stays alive
 
 => kubectl get deploy --> to see what deployments do we have.
+------- To see what are the objects in my cluster we can do ==> kubectl get all ---------
+-> Changing the image version in the deployment:
+   kubectl set <selector we have to set, ex: image> deploy/<name of the object> nginx=nginx:1.9.1
+-> Describing the deployment:
+   kubectl describe deploy <nginx-deploy>
+-> RollOut history:
+   kubectl rollout history deploy/<nginx-deploy>
+-> RollBack:
+   kubectl rollout undo deploy/<nginx-deploy>
+
