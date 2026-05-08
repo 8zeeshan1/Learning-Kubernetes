@@ -266,3 +266,9 @@ i. Node Ports:
     b) target Port: It is the port on which the traffic gets redirected from the NodePort.
     c) port: internal service port: this will be the port which will be used by the services to communicate with the pods.
 
+If we want to access the application from our localhost, from our machine, then we will have to make the cluster with
+extraPortMappings inside it we will need to mention the containerPort the port on which the node container is listening
+and will map it with hostPort which will be our localmachine port so this means on the hostPort we are making a request and 
+on the containerPort container is making the node to listen to request and then pass it through the Node Port and then 
+the request is passes from the service passway on the sercvice PORT where sercvice redirects request to the worker node's deployment
+and deployment manages the pods and let us access the application.
