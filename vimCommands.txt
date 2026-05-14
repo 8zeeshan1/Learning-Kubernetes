@@ -1,0 +1,16 @@
+vim <file name>
+
+i =                  Insert mode
+Shift + g =          Jump to the last line of the file.
+gg =                 Jump to top of the file.
+/word =              To search any specific word in the file. (from top to bottom)
+?word =              To search the word from bottom to top.
+n =                  After search press "n" to see the next occurence of the word.
+* =                  When the cursor is on any word and we want to see the next occurence of that word in forward direction, we press *.
+# =                  To seach the word in reverse direction when the cursor is on any word.
+:%s/word1/word2/g =  To globally replace the word1 from word2.
+u =                  undo
+ctrl + r =           redo
+o =                  If cursor is on any line and we want to start writting from the next line then press "o".
+Shift + o =          If cursor is on any line and we want to start writting from the previous line means above the cursor.
+Shift + i =          To start editing from the start of the line.
