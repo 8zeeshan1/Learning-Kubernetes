@@ -1,35 +1,35 @@
 vim <file name>
 
-COMMANDS                   |            DESCRIPTION
-                           |
-i =                        |    Insert mode
-Shift + g =                |    Jump to the last line of the file.
-gg =                       |    Jump to top of the file.
-/word =                    |    To search any specific word in the file. (from top to bottom)
-?word =                    |    To search the word from bottom to top.
-n =                        |    After search press "n" to see the next occurence of the word.
-* =                        |    When the cursor is on any word and we want to see the next occurence of that word in forward direction, we press *.
-# =                        |    To seach the word in reverse direction when the cursor is on any word.
-:%s/word1/word2/g =        |    To globally replace the word1 from word2.
-u =                        |    undo
-ctrl + r =                 |    redo
-o =                        |    If cursor is on any line and we want to start writting from the next line then press "o".
-Shift + o =                |    If cursor is on any line and we want to start writting from the previous line means above the cursor.
-Shift + i =                |    To start editing from the start of the line.
-shift + a =                |    To start editing from the end of the line.
-x =                        |    To delete the characters where cursor is present.
-dd =                       |    To delete a line.
-:e! =                      |    To undo all the changes.
-p =                        |    To paste copied text.
-Shift + p =                |    To paste above the cursor.
-Shift + v =                |    Select the whole line.
-y =                        |    Copy the selected text.
-:set nu =                  |    To print the line numbers in file.
-:set nonu =                |    To remove the line numbers.
-:syntax on/off =           |    Colors or some syntax like indentations and all.
-<line number> =            |    If we directly enter the line number we will reach that line.
-:q! =                      |    Exit without saving the file.
-:wq =                      |    Save and exit the file.
-ctrl + w (twice) =         |    To change the file selected.
-vim -d file1 file2        =|    Open two files at once vertical.
-vim -o file1 file2        =|    Open two files at once Horizontal.
+COMMANDS                  |            DESCRIPTION
+                          |
+i                         |    Insert mode
+Shift + g                 |    Jump to the last line of the file.
+gg                        |    Jump to top of the file.
+/word                     |    To search any specific word in the file. (from top to bottom)
+?word                     |    To search the word from bottom to top.
+n                         |    After search press "n" to see the next occurence of the word.
+*                         |    When the cursor is on any word and we want to see the next occurence of that word in forward direction, we press *.
+#                         |    To seach the word in reverse direction when the cursor is on any word.
+:%s/word1/word2/g         |    To globally replace the word1 from word2.
+u                         |    undo
+ctrl + r                  |    redo
+o                         |    If cursor is on any line and we want to start writting from the next line then press "o".
+Shift + o                 |    If cursor is on any line and we want to start writting from the previous line means above the cursor.
+Shift + i                 |    To start editing from the start of the line.
+shift + a                 |    To start editing from the end of the line.
+x                         |    To delete the characters where cursor is present.
+dd                        |    To delete a line.
+:e!                       |    To undo all the changes.
+p                         |    To paste copied text.
+Shift + p                 |    To paste above the cursor.
+Shift + v                 |    Select the whole line.
+y                         |    Copy the selected text.
+:set nu                   |    To print the line numbers in file.
+:set nonu                 |    To remove the line numbers.
+:syntax on/off            |    Colors or some syntax like indentations and all.
+<line number>             |    If we directly enter the line number we will reach that line.
+:q!                       |    Exit without saving the file.
+:wq                       |    Save and exit the file.
+ctrl + w (twice)          |    To change the file selected.
+vim -d file1 file2        |    Open two files at once vertical.
+vim -o file1 file2        |    Open two files at once Horizontal.
