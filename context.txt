@@ -1,0 +1,47 @@
+Flow of the traffic
+
+User → API Server → ETCD (store state)
+           ↓
+       Scheduler
+           ↓
+     Worker Node
+           ↓
+       Kubelet → runs Pod
+           ↓
+      Kube-proxy → handles traffic
+
+Que> When the container is already isolated unit then why do we needed the pod.
+Ans> 👉 Kubernetes does not manage containers directly 
+✔️ Pod gives:
+One IP per Pod
+Consistent networking model
+🧠 First: What a container does NOT solve
+A container gives you:
+Isolation ✅
+Packaging ✅
+Portability ✅
+But it does NOT handle:
+❌ Multi-container coordination
+❌ Shared networking between containers
+❌ Shared storage between containers
+❌ Lifecycle grouping (start/stop together)
+❌ Logical deployment unit
+👉 That’s where Pod comes in
+🔥 Core Idea
+👉 Pod = a group of tightly-coupled containers that behave like ONE unit
+
+* Inside a pod all the contatiners have same IP same PORT space
+
+Que> 🧠 Why Kubernetes is not as simple as Docker
+And> Because:Docker is a tool and Kubernetes is a distributed system.
+   Docker	               Kubernetes
+Runs containers	       Manages clusters
+Single machine	       Multiple machines
+Simple runtime	       Full orchestration system
+
+Que> In a pod a app or service without container also can run? basically can we deploy with the help of kubernetes without Docker?
+And> 
+
+kubectl describe node <node-name>  ==> This command will show the details of the node like ram storage cpu usages.
+
+
