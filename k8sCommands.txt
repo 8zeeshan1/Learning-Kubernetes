@@ -1,0 +1,2 @@
+kubectl config get-contexts                          |                 Displays the clusters(Contexts) which are present.
+kubectl config use-context <name of the cluster>     |                 Set's the context for the specified cluster.
