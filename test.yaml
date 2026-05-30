@@ -57,25 +57,30 @@
 #       env: demo
 #------------------------------------------------------------------------------------------------------------------------------------
 # Deployment
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deploy
-  labels:
-    env: demo
-    type: frontend
-spec:
-  template:
-    metadata:
-      name: nginx
-      labels:
-        env: demo
-    spec:
-      containers:
-      - image: nginx
-        name: nginx
-  replicas: 3
-  selector:
-    matchLabels:
-      env: demo
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nginx-deploy
+#   labels:
+#     env: demo
+#     type: frontend
+# spec:
+#   template:
+#     metadata:
+#       name: nginx
+#       labels:
+#         env: demo
+#     spec:
+#       containers:
+#       - image: nginx
+#         name: nginx
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       env: demo
 #---------------------------------------------------------------------------------------------------------------------------------------
+# DAY 10 - NameSpace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
