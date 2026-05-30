@@ -506,3 +506,11 @@ Ans> The short answer:
     "Which Deployment's Pods should this Service target?"
     That’s all.
 
+We have observed that we were able to reach the services with their pod IPs and their itself svc but not able to reach from the another svc(another
+namespace svc). so this explains a protected networking that one service is only accessible in it's namespace only.
+If we want to access the svc of another namespace we can do it with the help of FULLY QUALIFIED DOMAIN which is present in /etc/resolv.config.
+so we will write the command as:
+curl <name of another service>.<Fully Qualified Domain which is copied from /etc/resolv.conf>
+Example> curl svc-test.demo.svc.cluster.local
+
+* Observed that from one pod another pods service can be called inside the same namespace with the help of the pod ip.
