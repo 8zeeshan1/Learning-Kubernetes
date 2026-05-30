@@ -1,11 +1,14 @@
-kubectl config get-contexts                                   |        Displays the clusters(Contexts) which are present.
-kubectl config use-context <name of the cluster>              |        Set's the context for the specified cluster.
-kubectl edit pod <pod_name>                                   |        Edit the pod it will open the editor whichever is set in the $env:KUBE_EDITOR="notepad"
-kubectl get ns                                                |        This will give the list of all the namespaces available.
-kubectl get all --namespace=<name of the ns>                  |        Services/pods(resources) running on this namespace.
-kubectl get all                                               |        This will give the resources running on the default namespace.
-kubectl delete ns/<name of the ns>                            |        For deleting a namespace.
-kubectl create deploy <nginx-demo> --image=nginx <name of ns> |        Creating a particular resource for the specific ns.
-
+kubectl config get-contexts                                                      |        Displays the clusters(Contexts) which are present.
+kubectl config use-context <name of the cluster>                                 |        Set's the context for the specified cluster.
+kubectl edit pod <pod_name>                                                      |        Edit the pod it will open the editor whichever is set in the $env:KUBE_EDITOR="notepad"
+kubectl get ns                                                                   |        This will give the list of all the namespaces available.
+kubectl get all --namespace=<name of the ns>                                     |        Services/pods(resources) running on this namespace.
+kubectl get all                                                                  |        This will give the resources running on the default namespace.
+kubectl delete ns/<name of the ns>                                               |        For deleting a namespace.
+kubectl create deploy <nginx-demo> --image=nginx -n <name of ns>                 |        Creating a particular resource for the specific ns.
+kubectl get <resource name> -n <name of the ns>                                  |        We can monitor specific resource in the namespace.
+kubectl exec -it <pod name> -n <ns name> -- sh                                   |        To interact with the pod of specific ns(namespace).
+kubectl scale --replicas=3 deploy/<nginx-demo> -n=<demo>                         |        To modify any resource.
+kubectl expose deploy/<nginx-demo> --name=<svc-demo> --port 80 -n=demo           |        To expose the application or services we create a nodeport service.
 
 
