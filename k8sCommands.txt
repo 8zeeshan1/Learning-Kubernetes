@@ -1,2 +1,11 @@
-kubectl config get-contexts                          |                 Displays the clusters(Contexts) which are present.
-kubectl config use-context <name of the cluster>     |                 Set's the context for the specified cluster.
+kubectl config get-contexts                                   |        Displays the clusters(Contexts) which are present.
+kubectl config use-context <name of the cluster>              |        Set's the context for the specified cluster.
+kubectl edit pod <pod_name>                                   |        Edit the pod it will open the editor whichever is set in the $env:KUBE_EDITOR="notepad"
+kubectl get ns                                                |        This will give the list of all the namespaces available.
+kubectl get all --namespace=<name of the ns>                  |        Services/pods(resources) running on this namespace.
+kubectl get all                                               |        This will give the resources running on the default namespace.
+kubectl delete ns/<name of the ns>                            |        For deleting a namespace.
+kubectl create deploy <nginx-demo> --image=nginx <name of ns> |        Creating a particular resource for the specific ns.
+
+
+
