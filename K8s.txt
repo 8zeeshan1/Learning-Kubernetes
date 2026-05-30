@@ -358,3 +358,117 @@ backend/redis is treated different.
 
 Now for calling the pod of the another namespace inside the cluster we will require the Fully Qualified Domain name or FQDN for the communication.
 
+* Declarative way of creating a NameSpace:
+We create a YAML file-
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <name of the ns>
+
+* Imperative way of creating a Namespace:
+Write a command-
+kubectl create ns <name of the ns>
+
+*If we want to create any resource in the specific namespace, in imperative way we do it like this=> 
+kubectl create deploy nginx-demo --image=nginx demo
+
+Que> In the cluster every namespace have their own nodes and control plane also or nodes and control plane are common inside the cluster for all ns?
+Ans> Nodes and control plane are shared/common across all namespaces in a cluster.
+🧠 Real architecture
+Inside one cluster:
+Cluster
+│
+├── Control Plane (COMMON)
+│     ├── API Server
+│     ├── ETCD
+│     ├── Scheduler
+│     └── Controller Manager
+│
+├── Worker Nodes (COMMON)
+│     ├── Node1
+│     ├── Node2
+│     └── Node3
+│
+├── Namespace: dev
+│     ├── Pods
+│     ├── Services
+│     └── Deployments
+│
+├── Namespace: prod
+│     ├── Pods
+│     ├── Services
+│     └── Deployments
+│
+└── Namespace: testing
+      ├── Pods
+      ├── Services
+      └── Deployments
+🔥 Important realization
+Namespaces are:
+logical separation
+NOT:
+infrastructure separation
+🧠 Example
+Suppose cluster has:
+Node1 → 8GB RAM
+Node2 → 8GB RAM
+Both are shared.
+Pods from:
+dev namespace
+prod namespace
+monitoring namespace
+may run on SAME node.
+Example:
+Node1
+ ├── dev/backend-pod
+ ├── prod/nginx-pod
+ └── monitoring/prometheus
+All together.
+🔥 Who decides where Pods go?
+Still:
+Scheduler
+Scheduler does NOT care much about namespace.
+It checks:
+CPU
+RAM
+constraints
+affinity
+taints
+Then schedules Pod to any suitable node.
+
+🧠 Example scheduling
+Suppose:
+dev namespace pod
+needs 2GB RAM.
+Scheduler may place it:
+Node2
+Then:
+prod namespace pod
+also may go:
+Node2
+Perfectly normal.
+
+🔥 So what exactly is isolated by namespace?
+Things like:
+
+Resource names
+Example:
+dev/nginx
+prod/nginx
+No collision.
+
+Access permissions (RBAC)
+Example:
+Dev team:
+can access dev namespace only
+
+Resource quotas
+Example:
+dev namespace:
+max 4 CPU
+
+Visibility
+Default:
+kubectl get pod
+shows current namespace.
+
