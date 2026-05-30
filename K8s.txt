@@ -347,3 +347,14 @@ The distinction is: the control plane handles management traffic constantly, but
 Complete end-to-end mental model
 ComponentIts one jobAPI serverEntry point for all management commandsETCDSource of truth for cluster stateSchedulerDecides which node runs each podController managerContinuously closes the gap between desired and actual stateKubeletRuns pods on a node, reports metricskube-proxyImplements Service routing rules as iptables/ipvsDeploymentManages pod versions and countsReplicaSetKeeps pod count at desired levelServiceStable traffic endpoint using label matchingHPAWatches metrics, adjusts Deployment replicasextraPortMappingsExposes KIND node container ports to your laptop
 The whole system follows one philosophy: declare what you want, Kubernetes makes it true and keeps it true.
+______________________________________________________________________________________________________________________________________________
+
+Day 10 NAMESPACES
+
+Suppose there are different different teams working on the project/cluster in a company, there are high chances of the conflicts between the pods
+suppoose 1 team creates a pod for the redis and another one also creates a redis pod this becomes ambiguos to solve this problem concept of the 
+NameSpace was introduces it creates an isolation inside the cluster for the different teams now the frontend/redis is treated differently and 
+backend/redis is treated different.
+
+Now for calling the pod of the another namespace inside the cluster we will require the Fully Qualified Domain name or FQDN for the communication.
+
