@@ -11,4 +11,8 @@ kubectl exec -it <pod name> -n <ns name> -- sh                                  
 kubectl scale --replicas=3 deploy/<nginx-demo> -n=<demo>                         |        To modify any resource.
 kubectl expose deploy/<nginx-demo> --name=<svc-demo> --port 80 -n=demo           |        To expose the application or services we create a nodeport service.
 
+DAY 11
+kubectl logs pods/<myapp> -c <init-myservice>                                        |        This will show the logs of the specific container in the pod
+kubectl exec -it <myapp> -- printenv                                             |        This will print all the env variables inside the container.
+
 
