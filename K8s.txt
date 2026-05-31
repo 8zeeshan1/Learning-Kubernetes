@@ -522,4 +522,38 @@ DAY 11: MULTICONTAINER Pods
 * Sometimes we need a dependency like we need one container to run only afte the another container, for example ther is an init container which
 provides the inputs to the app container, so we want the app container only start after init container finishes processing the initial inputs,
 and if the app container goes down init container goes down with it as well.
+* Resources in the pods will be shared with all the containers.
+
+# INIT CONTAINERS = These are the containers which runs before the main application container starts. It's job is to setup work and exit
+then only the main container starts.
+Example:
+1. Setup database connection
+2. Download config files
+3. Wait for dependency
+4. THEN start app
+* If Init fails main container never starts.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp-pod
+spec:
+  containers:
+  - name: myapp-container
+    image: busybox:1.28
+    command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']
+    env:
+    - name: FIRST_NAME
+      value: "Zeeshan"
+  initContainers:
+  - name: init-myservice
+    image: busybox:1.28
+    command: ['sh', '-c']
+    args: ['until nslookup kubernetes.default.svc.cluster.local; do echo waiting for service to be up; sleep 2; done;']
+
+* This is how we write the YAML for the multicontainer which is dependent on the initContainer the commands there it looks for the svc to be up
+to start the main container otherwise it will be stuck in the middle.
+
 
