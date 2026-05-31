@@ -555,5 +555,6 @@ spec:
 
 * This is how we write the YAML for the multicontainer which is dependent on the initContainer the commands there it looks for the svc to be up
 to start the main container otherwise it will be stuck in the middle.
+* No matter how many initContainers are there in the pod they all have to satisfied and process first then only main container will run.
 
 
