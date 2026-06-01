@@ -1,3 +1,5 @@
+kind create cluster --name=<cluster name> or use YAML file                       |        Creation of the cluster.
+kind delete cluster --name <name of the cluster>                                 |        Deleting a cluster.
 kubectl config get-contexts                                                      |        Displays the clusters(Contexts) which are present.
 kubectl config use-context <name of the cluster>                                 |        Set's the context for the specified cluster.
 kubectl edit pod <pod_name>                                                      |        Edit the pod it will open the editor whichever is set in the $env:KUBE_EDITOR="notepad"
@@ -12,7 +14,7 @@ kubectl scale --replicas=3 deploy/<nginx-demo> -n=<demo>                        
 kubectl expose deploy/<nginx-demo> --name=<svc-demo> --port 80 -n=demo           |        To expose the application or services we create a nodeport service.
 
 DAY 11
-kubectl logs pods/<myapp> -c <init-myservice>                                        |        This will show the logs of the specific container in the pod
+kubectl logs pods/<myapp> -c <init-myservice>                                    |        This will show the logs of the specific container in the pod
 kubectl exec -it <myapp> -- printenv                                             |        This will print all the env variables inside the container.
 
 
