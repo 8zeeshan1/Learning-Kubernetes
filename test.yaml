@@ -12,7 +12,7 @@
 #       ports: 
 #         - containerPort: 80
 
-#__________________________________________________________________________________________________________________________________
+##---------------------------------------------------------------------------------------------------------------------------------------
 # DAY 8 - Replication Controller:
 # apiVersion: v1
 # kind: ReplicationController
@@ -32,7 +32,7 @@
 #       - image: nginx
 #         name: nginx
 #   replicas: 3
-#-------------------------------------------------------------------------------------------------------------------------------------------
+##-------------------------------------------------------------------------------------------------------------------------------------------
 # Replica Set
 # apiVersion: apps/v1
 # kind: ReplicaSet
@@ -55,7 +55,7 @@
 #   selector:
 #     matchLabels:
 #       env: demo
-#------------------------------------------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------------------------------------------
 # Deployment
 # apiVersion: apps/v1
 # kind: Deployment
@@ -78,30 +78,52 @@
 #   selector:
 #     matchLabels:
 #       env: demo
-#---------------------------------------------------------------------------------------------------------------------------------------
+##---------------------------------------------------------------------------------------------------------------------------------------
 # DAY 10 - NameSpace
 # apiVersion: v1
 # kind: Namespace
 # metadata:
 #   name: demo
-#---------------------------------------------------------------------------------------------------------------------------------------
+##---------------------------------------------------------------------------------------------------------------------------------------
 # DAY 11 - multi-container pod
-apiVersion: v1
-kind: Pod
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: myapp
+#   labels:
+#     name: myapp-pod
+# spec:
+#   containers:
+#   - name: myapp-container
+#     image: busybox:1.28
+#     command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']
+#     env:
+#     - name: FIRST_NAME
+#       value: "Zeeshan"
+#   initContainers:
+#   - name: init-myservice
+#     image: busybox:1.28
+#     command: ['sh', '-c']
+#     args: ['until nslookup kubernetes.default.svc.cluster.local; do echo waiting for service to be up; sleep 2; done;']
+##---------------------------------------------------------------------------------------------------------------------------------------
+# DAY 12 - DaemonSet
+apiVersion: apps/v1
+kind: DaemonSet
 metadata:
-  name: myapp
+  name: nginx-daemonset
   labels:
-    name: myapp-pod
+    env: demo
+    type: frontend
 spec:
-  containers:
-  - name: myapp-container
-    image: busybox:1.28
-    command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']
-    env:
-    - name: FIRST_NAME
-      value: "Zeeshan"
-  initContainers:
-  - name: init-myservice
-    image: busybox:1.28
-    command: ['sh', '-c']
-    args: ['until nslookup kubernetes.default.svc.cluster.local; do echo waiting for service to be up; sleep 2; done;']
+  template:
+    metadata:
+      name: nginx
+      labels:
+        env: demo
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+  selector:
+    matchLabels:
+      env: demo
