@@ -556,5 +556,150 @@ spec:
 * This is how we write the YAML for the multicontainer which is dependent on the initContainer the commands there it looks for the svc to be up
 to start the main container otherwise it will be stuck in the middle.
 * No matter how many initContainers are there in the pod they all have to satisfied and process first then only main container will run.
+________________________________________________________________________________________________________________________________________________________________________________________
 
+DAY 12: DAEMONSET
 
+* Daemonset is very similar to the deployment, just the difference is that in the deployment we make replicas and it can create in the same pod
+also but Daemonset creates replicas in all the nodes.
+
+* Also the change in the YAML file is that we don't specify replicas rest of the things are same as deploy in place of deploy we mention daemonset.
+
+Que> About the workload managers and kubernetes objects to do so 
+daemonset, jobs and cron jobs.
+first can you explain me what workload do they have to manage explain me
+
+Ans> Good. Before understanding DaemonSet, Jobs, and CronJobs, first understand:
+
+🧠 What are Workloads in Kubernetes?
+A workload means:
+Something that runs containers to perform work.
+Kubernetes needs different ways to run applications because:
+Not every app behaves the same.
+
+Example:
+Some apps should:
+run forever
+run once
+run on every node
+run on schedule
+
+Different workload managers exist for these different needs.
+
+🎯 Main Types of Workloads
+
+1️⃣ Deployment
+You already learned this.
+Workload:
+Long-running applications
+
+Example:
+Backend API
+Frontend app
+Auth service
+
+Runs:
+continuously
+If pod dies:
+recreate pod
+
+2️⃣ DaemonSet
+Workload:
+One Pod on EVERY node
+Purpose:
+Run infrastructure/system services.
+
+Example:
+Monitoring agent
+Log collector
+Security scanner
+
+Example:
+Suppose cluster has:
+Node1
+Node2
+Node3
+DaemonSet creates:
+1 Pod on Node1
+1 Pod on Node2
+1 Pod on Node3
+Automatically.
+Why?
+Because some things must exist:
+on every machine
+
+Example:
+Collect logs from every node.
+
+3️⃣ Job
+Workload:
+Run task ONCE and finish
+Unlike Deployment:
+does NOT run forever
+
+Examples:
+Database migration
+Generate report
+Data processing
+Backup
+
+Flow:
+
+Run Pod
+      ↓
+Task completes
+      ↓
+Pod exits
+      ↓
+SUCCESS
+
+Example
+Send monthly invoices
+
+After work done:
+container stops
+No need to keep running.
+
+4️⃣ CronJob
+Workload:
+Run task on schedule
+Like Linux cron.
+
+Examples:
+Daily backup
+Nightly cleanup
+Every-hour report
+Weekly email
+
+Example:
+Every day at 2 AM
+Kubernetes automatically starts Job.
+
+Mental Model-->
+Deployment: Always running employee
+DaemonSet: Security guard on every building floor (one on every node)
+Job: One-time task worker
+CronJob: Worker who comes every morning at fixed time
+
+Big Picture Flow
+Need always-running app?
+      ↓
+Deployment
+
+Need pod on every node?
+      ↓
+DaemonSet
+
+Need one-time work?
+      ↓
+Job
+
+Need scheduled work?
+      ↓
+CronJob
+
+One-line takeaway
+Workload managers exist because different applications/tasks have different execution patterns—continuous, one-time, node-wide, or scheduled.
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 13: 
