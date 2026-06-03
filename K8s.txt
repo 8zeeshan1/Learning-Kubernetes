@@ -702,4 +702,13 @@ One-line takeaway
 Workload managers exist because different applications/tasks have different execution patterns—continuous, one-time, node-wide, or scheduled.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-DAY 13: 
+DAY 13: STATIC PODS, MANUAL POD MANAGEMENT, LABELS AND SELECTORS.
+
+* Remember the block diagram of the cluster and node services,
+We have seen that there are different worker nodes inside which our pods runs, which are managed by the scheduler in the control plane node.
+But now we should understand that the services in the control plane node are also inside the pods only, so that means scheduler is also served
+with the pod, so a question arises, 
+QUE> If the scheduler is the one who schedules the pods on the nodes then how come scheduler got it's node running?
+ANS> The answer is simple. STATIC PODS, these pods do not depend on the scheduler to get assigned to the node to run on.
+In these kind of pods we specify the nodeName and the pod directly runs on that node so scheduler do not have to take the responsibility of 
+these pods(Static pods).
