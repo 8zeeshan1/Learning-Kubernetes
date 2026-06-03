@@ -17,4 +17,8 @@ DAY 11
 kubectl logs pods/<myapp> -c <init-myservice>                                    |        This will show the logs of the specific container in the pod
 kubectl exec -it <myapp> -- printenv                                             |        This will print all the env variables inside the container.
 
+DAY 13
+kubectl get pods -n kube-system | Select-String scheduler                        |        shows the details about the static pod scheduler.
+docker ps | Select-String control                                                |        This shows the control plane nodes container.
+docker exec -it multi-node-cluster-control-plane sh                              |        This will take me inside the control plane container.
 
