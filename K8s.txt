@@ -712,3 +712,32 @@ QUE> If the scheduler is the one who schedules the pods on the nodes then how co
 ANS> The answer is simple. STATIC PODS, these pods do not depend on the scheduler to get assigned to the node to run on.
 In these kind of pods we specify the nodeName and the pod directly runs on that node so scheduler do not have to take the responsibility of 
 these pods(Static pods).
+
+* when we make a multinode cluster, we see a lots of namespaces the working namespaces where developers put their things is the default,
+and the namespace whihch contains the control plane node's static pods is kube-system.
+
+* We can find the YAML files of these pods by running and getting inside the container of the control plane node and find the YAML file at 
+location => /etc/kubernetes/manifest/
+If we even need to debug anything like
+when pod is just staying in the pending state all that we can do by visiting on this location and examining these files.
+# cd -
+/etc/kubernetes/manifests
+# ls -lrt
+total 16
+-rw------- 1 root root 2632 Jun  3 08:19 etcd.yaml
+-rw------- 1 root root 3968 Jun  3 08:19 kube-apiserver.yaml
+-rw------- 1 root root 3507 Jun  3 08:19 kube-controller-manager.yaml
+-rw------- 1 root root 1726 Jun  3 08:19 kube-scheduler.yaml
+
+* For the experiment what we tried is, we moved the yaml file of the scheduler to the /temp directory and then create a pod it was stuck in the
+pending state, no node were getting assigned to it.
+But as soon as we moved the sheduler yaml at the proper location the pod started running.
+Now we are moving the scheduler yaml file again to the /temp and by Declarative method we are making a pod with the nodeName inside the spec: container
+as we have specified the node there is no work for the scheduler so the pod runs and this is called MANUAL POD MANAGEMENT.
+
+-> Now it is the discussion about the Labels, Selector - matchLabels:
+* Labels - these are the the variables which make the distinction between the services sometimes even in the same namespaces people need same
+type of services in the same namespace but they want to avoid conflicts so they want the pods to maintained differentl. so me mark them with 
+these labels.
+* Selector-matchLabels - This is the spec where we tell the deploy service to make the pods by matching the labels and what labels should 
+make the distinctions. 
