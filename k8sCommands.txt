@@ -22,3 +22,7 @@ kubectl get pods -n kube-system | Select-String scheduler                       
 docker ps | Select-String control                                                |        This shows the control plane nodes container.
 docker exec -it multi-node-cluster-control-plane sh                              |        This will take me inside the control plane container.
 
+DAY 14
+docker sbom <My-image>        |Removed|                                          |        software bill of materials, gives the details of the ingrediants of the material like this image contains this this dependecies.
+docker scout sbom                                                                |        This gives the details of the dependencies along with their health information.
+
