@@ -741,3 +741,10 @@ type of services in the same namespace but they want to avoid conflicts so they 
 these labels.
 * Selector-matchLabels - This is the spec where we tell the deploy service to make the pods by matching the labels and what labels should 
 make the distinctions. 
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 14: TAINT AND TOLERATIONS AND NODESELECTORS:
+
+* When we want any node to take only specific pods to run on that node then we taint that node with some key : value so when the pod 
+which don't have the same toleration for the node then that node would not be running on that node.
+
