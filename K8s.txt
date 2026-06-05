@@ -757,6 +757,16 @@ ii. preferNoSchedule: Try not to place the pod here. It can still place a pod he
 iii. noExecute: all the old nodes will be evicted and only the new nodes with the toleration will be able to run here. if pod have toleration it
 can stay and new pod with toleration can also be scheduled.
 
+Que> Can we add more than one taint on a node?
+Ans> Yes. A Kubernetes node can have multiple taints applied simultaneously.
+Each taint is evaluated independently, and a pod must tolerate all relevant taints on a node to be 
+scheduled there (unless filtered by effect semantics).
+Example:
+kubectl taint nodes node-1 env=prod:NoSchedule
+kubectl taint nodes node-1 gpu=true:PreferNoSchedule
+kubectl taint nodes node-1 dedicated=ml:NoExecute
+This node now has 3 taints.
+
 
 
 
