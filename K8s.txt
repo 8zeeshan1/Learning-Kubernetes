@@ -748,3 +748,15 @@ DAY 14: TAINT AND TOLERATIONS AND NODESELECTORS:
 * When we want any node to take only specific pods to run on that node then we taint that node with some key : value so when the pod 
 which don't have the same toleration for the node then that node would not be running on that node.
 
+# SYNTAX OF TAINT: key=value:effect
+# EXAMPLE: kubectl taint nodes <node name> gpu=true:noSchedule
+
+* There are three typs of effects:
+i. noSchedule: Do not Schedule new pods here.
+ii. preferNoSchedule: Try not to place the pod here. It can still place a pod here if no place pod gets anywhere else.
+iii. noExecute: all the old nodes will be evicted and only the new nodes with the toleration will be able to run here. if pod have toleration it
+can stay and new pod with toleration can also be scheduled.
+
+
+
+
