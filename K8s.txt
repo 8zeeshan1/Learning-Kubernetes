@@ -817,5 +817,21 @@ DAY 15: NODE AFINITY
 | Flexible logic     | ❌            | ✅         |
 ________________________________________________________________________________________________________________________________________________________________________________________
 
+DAY 16: RESOURCE REQUESTS AND LIMITS
+
+* Another service through which pods are scheduled on the particular nodes.
+* Suppose we have nodes with limited cpu's and memories and all the nodes resources get's occupied by the different pods, now any pod comes 
+  it will start throwing and error that insufficient resources and pod will not be scheduled. 
+  So kubernetes keeps everything calculated like how much resources is used which pod is using how much, it keeps track of everything.
+
+* There comes a situation where pod start taking more and more resources within the node,
+  -because scheduler only sees the initially how much memory do a pod require to run and pod gets scheduled.
+  -then after when the traffic increases the pod starts taking more and more cpu and memory and the situation comes where memory doesn't 
+  left and pod gets crashed with OOM error (Out Of Memory error).
+  -and then the node will also throw out that OOM pods. and node can crash too because of this
+
+* So, to avaoid these things to happen we specify the request and limits to the pod so that when it takes more than specified resources the 
+pod will be crashed and our node will be safe, healthy, up and running.
+
 
 
