@@ -772,5 +772,50 @@ This node now has 3 taints.
   It looks for the specific labels which are applied on the nodes, in the pods we specify those labels and then scheduler looks for that labels
   only to up and run the pod on the node. When the labels matches pod gets scheduled on the specific node.
 
+  Example: 
+  spec:
+  nodeSelector:
+    env: production
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 15: NODE AFINITY
+
+* NODEAFINITY:
+  It is the advanced version of the NODESELECTORS. NodeSelector = Simple filter, NodeAfinity = Advanced Filter.
+  NodeAfinity let's us write:
+   -Rules,
+   -Preference,
+   -Multiple Conditions,
+   -Soft Requirements,
+   -Hard Requirements
+  
+  -There are two types of NodeAfinity:
+   i.  requiredDuringSchedulingIgnoredDuringExecution  = This is the strict one if the pod doesn't find the node, pod won't schedule.
+   ii. preferredDuringSchedulingIgnoredDuringExecution = This is linient one, if the pod doesn't find the proper node, it will shedule wherever it gets place.
+
+  Example:
+    spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - production
+
+* Difference between NODEAFINITY and NODESELECTORS:
+
+| Feature            | nodeSelector  | nodeAffinity |
+| ------------------ | ------------  | ------------ |
+| Exact match        | ✅            | ✅         |
+| Multiple values    | ❌            | ✅         |
+| Soft preference    | ❌            | ✅         |
+| Advanced operators | ❌            | ✅         |
+| Hard requirement   | ✅            | ✅         |
+| Flexible logic     | ❌            | ✅         |
+________________________________________________________________________________________________________________________________________________________________________________________
+
 
 
