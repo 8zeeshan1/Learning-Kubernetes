@@ -767,6 +767,10 @@ kubectl taint nodes node-1 gpu=true:PreferNoSchedule
 kubectl taint nodes node-1 dedicated=ml:NoExecute
 This node now has 3 taints.
 
+* NODESELECTORS: 
+  It is the spec by which the pods select any specific node like they have the preference to which of the pods they will be preferring to run on.
+  It looks for the specific labels which are applied on the nodes, in the pods we specify those labels and then scheduler looks for that labels
+  only to up and run the pod on the node. When the labels matches pod gets scheduled on the specific node.
 
 
 
