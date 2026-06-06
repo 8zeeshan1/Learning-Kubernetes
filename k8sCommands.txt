@@ -25,6 +25,13 @@ docker exec -it multi-node-cluster-control-plane sh                             
 DAY 14
 docker sbom <My-image>        |Removed|                                          |        software bill of materials, gives the details of the ingrediants of the material like this image contains this this dependecies.
 docker scout sbom                                                                |        This gives the details of the dependencies along with their health information.
-kubectl taint node <node name>                                                   |        To add a taint in the node.
+kubectl taint node <node name> <gpu=true:NoSchedule>                             |        To add a taint in the node.
 kubectl describe node <node name> | Select-String taint                          |        Displays the taint of the node.
 kubectl run redis --image=redis --dry-run=client -o yaml > redis.yaml            |        This creates a yaml file of the image quickly.
+kubectl delete pods --all                                                        |        Delete all the pods at once.
+kubectl taint node <node-name> <gpu=true:NoSchedule->                            |        Remove the taint from the node.
+kubectl label node <node-name> <key=value(label)>                                |        Adding a label to a node.
+kubectl get nodes --show-labels                                                  |        Will show all the nodes with their labels.
+kubectl describe node <<nodes names>> | Select-String label                      |                "
+
+
