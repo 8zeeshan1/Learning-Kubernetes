@@ -833,5 +833,12 @@ DAY 16: RESOURCE REQUESTS AND LIMITS
 * So, to avaoid these things to happen we specify the request and limits to the pod so that when it takes more than specified resources the 
 pod will be crashed and our node will be safe, healthy, up and running.
 
+--> We can also specify the nameSpace inside the yaml file only.
 
+* OOM Killed = It is the type of error occurs when the pod takes memory more than the limit memory, it is out of memory killed means pod killed
+from the node.
+
+* In Kubernetes, CrashLoopBackOff is a pod state indicating that a container starts, crashes, 
+and Kubernetes repeatedly tries to restart it with increasing delays (“backoff”).
+________________________________________________________________________________________________________________________________________________________________________________________
 
