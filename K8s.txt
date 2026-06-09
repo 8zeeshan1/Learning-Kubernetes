@@ -842,3 +842,87 @@ from the node.
 and Kubernetes repeatedly tries to restart it with increasing delays (“backoff”).
 ________________________________________________________________________________________________________________________________________________________________________________________
 
+DAY 17: AUTOSCALING - VPA & HPA
+
+* We do not monitor the deployment 24/7 so even though we have manual scaling option by increasing the replicas we can't just always do it 
+maually so that is where the concept of pods autoscaling came in, so that more load can be handled without the application crash.
+
+* HPA = Horizontal Pod Autoscaling-It is the autoscaling which increases the number of pods automatically in the node when the traffic increases.
+
+* VPA = Vertical Pod Autoscaling-It is the the autoscaling in which the smaller pod is replaced by the bigger pod(more EC2 machines get added),
+It comes with a downtime when the replacement of the pod is happening. so pod should be stateless and can afford the downtime.
+
+* HPA only comes with the kubernetes inbuilt infrastructure other autoscalings like eventbased autoscalings and vpa we have to configure from
+outside the kubernetes example: from AWS.
+
+# METRIC SERVER => It is the service which keeps the track of the memory and cpu usage of the pods and how much memory and cpu is available.
+It runs via pod inside the kube-system namespace and managed via deploy (metrics-server).
+Kubelet on each node watches the CPU usage, RAM usage, container health and resource usage, Metric Server collects everything from the kubelets. 
+
+To install it we need to execute an official command: kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+ETCD Stores:                        Metric Server stores:
+Pods                                cpu getting used in cluster
+Deployments                         memory getting used in cluster
+ReplicaSets                         other resources getting used in cluster
+Services
+Secrets
+ConfigMaps
+Namespaces
+Node info
+
+# Que> How to create multiple objects in single yaml file?
+  Ans> We put --- after one object ends and can continue other from next line. ref: see deploy.yaml.
+
+kubectl autoscale deploy nginx-deploy --cpu-percent=50 --min=1 --max=10
+decoding this command here it is specifying that when the utilization of the cpu in request means if the 50% of the requested cpu is utilized the 
+autoscaling will consider it as the pod is under load and will ask the deployment to increase the number of replica of that pod.
+this way we specify the minimum number of pods and maximum number of pods.
+Maximum number of pods spec saves the system from overscaling as after the 10 replicas the cpu utilization of the pods goes beyond 50% or nodes has
+to increase or take the support of the vertical scaling.
+You said:
+after 10 replicas cpu utilization goes beyond 50% then nodes has to increase or take support of vertical scaling.
+This is partially correct.
+Possible situations after:
+max replicas = 10
+and still overloaded:
+Case 1 — Cluster has free resources
+Pods can still use:
+their CPU limit
+and continue running, but performance may degrade.
+Case 2 — Nodes don't have enough resources
+Then:
+Cluster Autoscaler
+may add:
+new nodes
+(in cloud environments).
+This is called:
+horizontal infrastructure scaling
+Case 3 — Vertical scaling
+Increase Pod resources:
+Example:
+200m → 500m CPU
+This is:
+Vertical Pod Scaling
+Usually done using:
+VPA (Vertical Pod Autoscaler)
+Better final understanding:
+HPA = more Pods
+VPA = bigger Pods
+Cluster Autoscaler = more Nodes
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 18: PROBES
+
+* These are some system, some process which is monitoring our system and taking necessary actions
+# Health Probes:
+These are the probes which ensure the proper working of the application. If the application crashes Health Probes ensures to take necessary actions.
+i>   startup: Checks if the application starts properly.
+ii>  readiness: Checks if the application is ready.
+iii> liveness: Checks if the application is alive.
+
+# Will have to understand this topic properly.
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 19: 
+
