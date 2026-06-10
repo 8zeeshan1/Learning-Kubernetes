@@ -107,23 +107,51 @@
 #     args: ['until nslookup kubernetes.default.svc.cluster.local; do echo waiting for service to be up; sleep 2; done;']
 ##---------------------------------------------------------------------------------------------------------------------------------------
 # DAY 12 - DaemonSet
-apiVersion: apps/v1
-kind: DaemonSet
+# apiVersion: apps/v1
+# kind: DaemonSet
+# metadata:
+#   name: nginx-daemonset
+#   labels:
+#     env: demo
+#     type: frontend
+# spec:
+#   template:
+#     metadata:
+#       name: nginx
+#       labels:
+#         env: demo
+#     spec:
+#       containers:
+#       - image: nginx
+#         name: nginx
+#   selector:
+#     matchLabels:
+#       env: demo
+##---------------------------------------------------------------------------------------------------------------------------------------
+
+# DAY 19 - ConfigMap
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-daemonset
   labels:
-    env: demo
-    type: frontend
+    run: busybox-new
+  name: busybox-new
 spec:
-  template:
-    metadata:
-      name: nginx
-      labels:
-        env: demo
-    spec:
-      containers:
-      - image: nginx
-        name: nginx
-  selector:
-    matchLabels:
-      env: demo
+  containers:
+  - image: busybox:1.28
+    name: busybox-new
+#-----------------------------------------------------------------------------------------------------------------------
+    env:
+    - name: FIRST_NAME
+      valueFrom:
+        configMapKeyRef:                     # This is how we can use the config map values as environment variables in our pod.
+          name: my-config
+          key: first_name
+#-----------------------------------------------------------------------------------------------------------------------
+    command: ["sh", "-c", "echo FIRST_NAME=$FIRST_NAME; sleep 3600"]  # This is how we can use the environment variable in the command section of the container spec. We can also use it in the args section as shown below.
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+##---------------------------------------------------------------------------------------------------------------------------------------
+
