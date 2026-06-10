@@ -924,5 +924,38 @@ iii> liveness: Checks if the application is alive.
 # Will have to understand this topic properly.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-DAY 19: 
+DAY 19: CONFIGMAPS 
 
+* When we are giving environment variables to any of the pod's container we specify in it like 
+env:
+  - name:
+    value:
+but if in the same pod we need to give the same environment varibales to the another container then we will have to repeatedly write the environment
+variables which is unnecessay and repeteation of task which can cause mistakes.
+so we make a configmap defin env variables there and simply pass the reference to the containers so that once only we define the environments and 
+can use anywhere inside the cluster.
+We can refer to the configmap from any node or any pod whichever container needs the same environments we can give them the reference of configmap.
+
+* QUE> Where does the ConfigMap actually live?
+* ANS> A ConfigMap is stored in etcd, which is Kubernetes’ backing datastore.
+      etcd stores the cluster state, including:
+      Pods
+      Deployments
+      Services
+      Secrets
+      ConfigMaps
+      StatefulSets
+      RBAC rules
+      etc.
+
+* It is a good practice when we mount the configmaps with the volumes.
+* If the list of the variables is too long we can give the --from-file=<pass the reference of the file> ex: app.config , instead of the --from-literal
+we can write the key value pairs inside the file and give the reference of it. 
+
+In the declarative way we can get the yaml file from the command kubectl create cm <name of cm> --from-literal=<key>=<value> -o yaml > my-config.yaml
+This way we will be able to get the yaml file for the configmap and there in the data field we can add the key value pairs.
+And in the pod if we don't want to specify again and again the keys we can directly give the file referece in 
+ envFrom:
+  configMapRef:                    
+    name: my-config
+And all my values will be applied in the pod.
