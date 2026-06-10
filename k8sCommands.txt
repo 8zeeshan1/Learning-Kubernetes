@@ -43,8 +43,11 @@ kubectl autoscale deploy nginx-deploy --cpu-percent=50 --min=1 --max=10
 kubectl patch deployment metrics-server -n kube-system --type json --patch '[{\"op\":\"add\",\"path\":\"/spec/template/spec/containers/0/args/-\",\"value\":\"--kubelet-insecure-tls\"}]'
 kubectl rollout restart deployment metrics-server -n kube-system
 kubect get hpa
+kubectl top nodes
+kubectl top pods
 
-DAY 18
+DAY 18: CONFIGMAPS
+kubectl create cm <name of cm> --from-literal=<key>=<value> ` (then from the next line) --from-literal=<key>=<value>  | this creates a configmap.
 
 
                                            
