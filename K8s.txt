@@ -959,3 +959,26 @@ And in the pod if we don't want to specify again and again the keys we can direc
   configMapRef:                    
     name: my-config
 And all my values will be applied in the pod.
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 20: 
+
+Symetric Encryption: 
+Same key is used to encrypt and decrypt the data.
+So this way is not considered as the safe way to transfer the data over the internet as when we share the encrypted data hacker can sniff that data
+and then when we send the key over the network the hacker can keep a copy of that key also and decrypt the data.
+
+Assymetric Encryption:
+There is a utility open-ssl using that we create the public and private keys.
+we create public and private key.
+Private key is used for encryption.
+Public key will be sent to the server and it will be placed in the server in ./ssh/authorized_keys
+
+The keys can still be compromised that's why we use the certificates from the authorities only. that is why when we create our own SSL certificate 
+I get that this site is not secure because that certificate is not authorized from CA and our browser looks for the authorized signatures.
+For the detailed working of the SSL certificate see the tutorial and refer to the SS.
+________________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 21:
+
+
