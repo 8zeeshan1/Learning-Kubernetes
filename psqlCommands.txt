@@ -6,10 +6,14 @@ docker run --name postgres-container `
 -p <port mapping> `
 -d postgres
 
+docker start <postgres-container> | To start already containerized image. means to start the stopped container.
+
 docker exec -it <postgres-container> psql -U Zeus   | In the local environment we don't have to specify the password because when we don't specify
                                                     | the password, Postgres works in the Trust Authentication mechanism and trust the localhost user.
-                                                    | this works only in the docker container.
+                                                    | this works only in the docker container. In the local how to do with the pqAdmin is at bottom.
 
+Whichever userName we will give at the time of containerizing the image it will become the super User so instead of postgres as the superuser
+we see that userName as the SuperUser.
 
 _______________________________________________________________________________________________________________________________________________________________________________________
 
@@ -33,6 +37,7 @@ NON SQL Commands:
 \dt => to get all the tables in the current database.
 \dt+ => to get the list of all the tables along with details.
 \dt *.* => to get the list of all the tables along all the Databases.
+\q =>      to exit the shell of psql.
 _______________________________________________________________________________________________________________________________________________________________________________________
 
 
