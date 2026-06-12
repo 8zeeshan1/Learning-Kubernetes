@@ -1,0 +1,40 @@
+docker pull postgres:<any specific version> | Pulls the image of the postgres
+
+docker run --name postgres-container `
+-e POSTGRES_USER=<USERNAME> `
+-e POSTGRES_PASSWORD=<PASSWORD> `
+-p <port mapping> `
+-d postgres
+
+docker exec -it <postgres-container> psql -U Zeus   | In the local environment we don't have to specify the password because when we don't specify
+                                                    | the password, Postgres works in the Trust Authentication mechanism and trust the localhost user.
+                                                    | this works only in the docker container.
+
+
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+RESETTING THE FORGOTTEN PASSWORD OF THE USER IN THE POSTGRES_PASSWORD
+
+i>    Go to the path /Program files/postgreSQL/data
+ii>   Find pg_hba.conf
+iii>  edit it. In that we have to replace the scram-sha-256 to trust. This will let us to open the portal in the trust Authentication mode.
+iv>   run the command => Get-Service *postgres*
+v>    run the command => Restart-Service postgresql-x64-18 
+vi>   run the command => psql -U postgres
+vii>  query => ALTER USER qurai PASSWORD 'this-is-the-new-password-';
+viii> Then again edit the content of the pg_hba.conf from trust to scram-sha-256.
+________________________________________________________________________________________________________________________________________________________________________________________
+
+NON SQL Commands:
+
+\du => to see all the users.
+\l => to get all the DBs.
+\c => to connect to a DB or to switch between the Databases.
+\dt => to get all the tables in the current database.
+\dt+ => to get the list of all the tables along with details.
+\dt *.* => to get the list of all the tables along all the Databases.
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
