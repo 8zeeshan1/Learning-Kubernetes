@@ -979,6 +979,38 @@ I get that this site is not secure because that certificate is not authorized fr
 For the detailed working of the SSL certificate see the tutorial and refer to the SS.
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-DAY 21:
+DAY 21: TLS/SSL 
 
+Refer to the doc notes.
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 22: KUBECONFIG
+
+* It tells how to connect to the kubernetes clusters and who the user is. It has the login + connection details.
+
+* It is like the handler of the users through this file we handle and manage different users and their policies like what tasks they can perform.
+* The file exists in the: $HOME\User\qurai\.kube> notepad config , and we will be able to see the kubeconfig file.
+  The server address we see in the kubeconfig file it is the endpoint and location of the or ip of the api server.
+
+* Context = user + cluster + namespace 
+  We never had to specify it while writting the commands because k8s handle it by itself.
+
+* It also takes care of the Authentication and Authorization:
+              Authentication                                      |                          Authorization
+    i>    It asks : Who you are?                                  |             It asks: What you can do?
+    ii>   Symmetric key encryptions                               |             ABAC: Attribute Based Authentication, in this we set some permissions for the particular user we set policies. We have to make a policy file and then add it to API server then we have to restart the api server that's why it is not preferrable approach.
+    iii>  Assymetric key encryptions                              |             RBAC: Role Based Authentication, In this we specify the roles and set the policies to that role and then we can assign any new user that role only this way we don't need to restart the server everytime a new user is added in the organization.
+    iv>   certificates                                            |             NODE: Authorization for the nodes. so that different services can recognize each other and let perform task they are authorized to to.
+                                                                  |             Webhook: It's a third party Authorization.
+
+all the static pods are inside the etc\kubernetes\manifest
+and if we will cat the api-server we will see that there is a Authorization service also marked as the type of authorization it is using.
+RBAC and Webhooks are used most.
+All the certificates and keys are located in the directory: \etc\kubernetes\pki 
+If we get problem with the keys or certificates we can go there and do some chhed chhad.
+
+* Usually there is only one kubeconfig file per machine and in that there are listed different contexts and cluster it manages.
+_______________________________________________________________________________________________________________________________________________________________________________________
+
+DAY 23: 
 
