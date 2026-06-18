@@ -1010,6 +1010,18 @@ All the certificates and keys are located in the directory: \etc\kubernetes\pki
 If we get problem with the keys or certificates we can go there and do some chhed chhad.
 
 * Usually there is only one kubeconfig file per machine and in that there are listed different contexts and cluster it manages.
+
+
+# FOR SETTING UP THE USER JUST REFER TO THE LECTURE 22 AGAIN.
+
+* This is the imperative way of creating a user:
+kubectl config set-credentials adam \
+--client-key= 
+--client-certificate= 
+--embedded-cert=true.
+We do have to give the reference of the key and certificate. 
+
+* kubectl config set-context <adam> --cluster=<cluster name> --user=<userName>
 _______________________________________________________________________________________________________________________________________________________________________________________
 
 DAY 23: Authorization
@@ -1026,6 +1038,10 @@ RBAC also uses named group.
 * we created the yaml for the role. refer to the role.yaml
 and after that we need to create a yaml for the binding also to bind the user with the role.
 
-
+* Now we will see how we can login as adam and run the commands as adam:-
+We have seen before that the context is not same as the cluster so remmember that too.
+We create a user.
+Then we creat a context.
+Then we use that context.
 
 
