@@ -49,5 +49,9 @@ kubectl top pods
 DAY 18: CONFIGMAPS
 kubectl create cm <name of cm> --from-literal=<key>=<value> ` (then from the next line) --from-literal=<key>=<value>  | this creates a configmap.
 
-
-                                           
+DAY 23: Authorization
+kubectl auth can-i get pods                 | This ensures that i am authenticated to perform that task. like we can replace get with create.
+kubectl auth whoami                         | This will give us the details of who i am the user details.
+kubectl auth can-i get pods --as adam       | This will let us know if the specified user is able to perform some task or not.
+kubectl get roles -A --no-headers | wc -l   | This will count the number of lines in linux.
+kubectl get roles -A --no-headers | Measure-Object -Line | This will count the number of lines in powershell.
