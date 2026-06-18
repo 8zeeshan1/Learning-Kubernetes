@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+  namespace: default
+rules:
+  - apiGroups: [""]                 # leaving it empty indicates the core API group. this is for the resources which are referred to as "core" resources in Kubernetes, such as pods, services, etc. and is accessed using the core API group.
+    resources: ["pods"]             # specifies that this role applies to pods
+    verbs: ["get", "watch", "list"] # this role allows reading pods in the default namespace
+
+    
