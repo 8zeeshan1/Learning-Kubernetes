@@ -989,7 +989,7 @@ DAY 22: KUBECONFIG
 * It tells how to connect to the kubernetes clusters and who the user is. It has the login + connection details.
 
 * It is like the handler of the users through this file we handle and manage different users and their policies like what tasks they can perform.
-* The file exists in the: $HOME\User\qurai\.kube> notepad config , and we will be able to see the kubeconfig file.
+* The file exists in the: $HOME=> \Users\qurai\.kube> notepad config , and we will be able to see the kubeconfig file.
   The server address we see in the kubeconfig file it is the endpoint and location of the or ip of the api server.
 
 * Context = user + cluster + namespace 
@@ -1012,5 +1012,20 @@ If we get problem with the keys or certificates we can go there and do some chhe
 * Usually there is only one kubeconfig file per machine and in that there are listed different contexts and cluster it manages.
 _______________________________________________________________________________________________________________________________________________________________________________________
 
-DAY 23: 
+DAY 23: Authorization
+Role Based Authentication
+creating a role: 
+
+First let's understand two types of the API Groups:
+
+i > Core groups: after specifying apiVersion: v1 there is nothing in the /. that is a core group.
+ii> Named group: If there is a value near apiVersion then it is a named group. ex: rbac/authorization.k8s.io/v1
+
+RBAC also uses named group.
+
+* we created the yaml for the role. refer to the role.yaml
+and after that we need to create a yaml for the binding also to bind the user with the role.
+
+
+
 
